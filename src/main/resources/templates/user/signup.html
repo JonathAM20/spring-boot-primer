@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+    <title>User Signup</title>
+</head>
+<body class="bg-light">
+<form id="signup-form" method="post" action="/user/signup" class="form-signup" style="width: 100%; max-width:330px; padding: 15px; margin:auto">
+    <h1 class="text-center">User signup</h1>
+    <div class="form-group">
+        <label for="userId">User Id</label>
+        <input type="text" class="form-control" id="userId"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password"/>
+    </div>
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text" class="form-control" id="userName"/>
+    </div>
+    <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <input type="text" class="form-control" id="birthday"/>
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age"/>
+    </div>
+    <div class="form-group">
+        <div th:each="item:${genderMap}" class="form-check-inline">
+            <input type="radio" class="form-check-inpu" th:value="${item.value}">
+            <label class="form-check-label" th:text="${item.key}"></label>
+        </div>
+    </div>
+    <input type="submit" value="signup" class="btn btn-primary w-100 mt-3">
+</form>
+
+</body>
+</html>
