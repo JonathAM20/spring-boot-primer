@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.SignupForm;
+import com.example.service.SignupFormService;
 import com.example.service.UserApplicationService;
 import com.example.service.ValidationGroupOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class SignupController {
 
     @Autowired
     private UserApplicationService userApplicationService;
+    
+    @Autowired
+    private SignupFormService signupService;
 
     @GetMapping("signup")
     public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form){
@@ -37,6 +41,7 @@ public class SignupController {
         if(bindingResult.hasErrors()) return getSignup(model, locale, form);
         log.info(form.toString());
         System.out.println(form.toString());
+        signupService.save(form);
         return "redirect:/login";
     }
 }

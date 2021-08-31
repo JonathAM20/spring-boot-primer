@@ -8,12 +8,12 @@
 <nav layout:fragment="header" class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-branc" href="#">SpringSample</a>
+            <a class="navbar-brand" href="#">SpringSample</a>
         </div>
+        <form method="post" th:action="@{/logout}">
+        	<button class="btn btn-link pull-right navbar-brand" type="submit">Logout</button>
+    	</form>
     </div>
-    <form method="post" th:action="@{/logout}">
-        <button class="btn btn-link pull-right navbar-brand" type="submit">Logout</button>
-    </form>
 </nav>
 </body>
 </html>

@@ -6,12 +6,18 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
+@Entity
+@Table(name = "tb_signup_form")
 public class SignupForm {
 
+	@Id
     @NotBlank(groups = FirstValidationService.class)
     @Email(groups = SecondValidationService.class)
     private String userId;
