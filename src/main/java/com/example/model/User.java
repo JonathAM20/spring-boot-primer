@@ -14,8 +14,8 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "tb_signup_form")
-public class SignupForm {
+@Table(name = "tb_user")
+public class User {
 
 	@Id
     @NotBlank(groups = FirstValidationService.class)

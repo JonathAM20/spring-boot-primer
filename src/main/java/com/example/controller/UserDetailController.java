@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.model.SignupForm;
-import com.example.service.SignupFormService;
+import com.example.model.User;
+import com.example.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserDetailController {
 	
 	@Autowired
-	private SignupFormService signupFormService;
+	private UserService signupFormService;
 
 	@GetMapping("/detail/{userId:.+}")
 	public String findById(Model model, @PathVariable("userId") String email) {
-		SignupForm userDetail = signupFormService.findById(email);
-		model.addAttribute("userDetailForm", userDetail);
+		User user = signupFormService.findById(email);
+		model.addAttribute("user", user);
 		return "user/detail";
 	}
 	
 	@PostMapping(value="/detail", params="update")
-	public String update(SignupForm form, Model model) {
+	public String update(User form, Model model) {
 		try {
-			SignupForm signupForm = signupFormService.findById(form.getUserId());
+			User signupForm = signupFormService.findById(form.getUserId());
 			signupForm.setUserName(form.getUserName());
 			signupFormService.save(signupForm);	
 		}catch(Exception ex) {
@@ -40,7 +40,7 @@ public class UserDetailController {
 	}
 	
 	@PostMapping(value="/detail", params="delete")
-	public String delete(SignupForm form, Model model) {
+	public String delete(User form, Model model) {
 		signupFormService.delete(form.getUserId());
 		return "redirect:/user/list";
 	}

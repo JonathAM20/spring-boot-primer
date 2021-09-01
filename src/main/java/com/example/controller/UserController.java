@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.model.SignupForm;
-import com.example.service.SignupFormService;
+import com.example.model.User;
+import com.example.service.UserService;
 import com.example.service.UserApplicationService;
 import com.example.service.ValidationGroupOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,23 +21,23 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 @Slf4j
-public class SignupController {
+public class UserController {
 
     @Autowired
     private UserApplicationService userApplicationService;
     
     @Autowired
-    private SignupFormService signupService;
+    private UserService signupService;
 
     @GetMapping("signup")
-    public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form){
+    public String getSignup(Model model, Locale locale, @ModelAttribute User form){
         Map<String, Integer> genderMap = userApplicationService.getGenderMap(locale);
         model.addAttribute("genderMap", genderMap);
         return "user/signup";
     }
 
     @PostMapping("signup")
-    public String postSignup(Model model, Locale locale, @ModelAttribute @Validated(ValidationGroupOrderService.class) SignupForm form, BindingResult bindingResult){
+    public String postSignup(Model model, Locale locale, @ModelAttribute @Validated(ValidationGroupOrderService.class) User form, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return getSignup(model, locale, form);
         log.info(form.toString());
         System.out.println(form.toString());

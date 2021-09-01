@@ -10,7 +10,7 @@
     <title th:text="#{user.signup.title}"></title>
 </head>
 <body class="bg-light">
-<form id="signup-form" method="post" action="/user/signup" class="form-signup" th:object="${signupForm}">
+<form id="signup-form" method="post" action="/user/signup" class="form-signup" th:object="${user}">
     <h1 class="text-center" th:text="#{user.signup.title}"></h1>
     <div class="form-group">
         <label for="userId" th:text="#{userId}"></label>
