@@ -29,14 +29,14 @@ public class UserController {
     @Autowired
     private UserService signupService;
 
-    @GetMapping("signup")
+    @GetMapping("/signup")
     public String getSignup(Model model, Locale locale, @ModelAttribute User form){
         Map<String, Integer> genderMap = userApplicationService.getGenderMap(locale);
         model.addAttribute("genderMap", genderMap);
         return "user/signup";
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public String postSignup(Model model, Locale locale, @ModelAttribute @Validated(ValidationGroupOrderService.class) User form, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return getSignup(model, locale, form);
         log.info(form.toString());
